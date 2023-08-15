@@ -5,21 +5,28 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
+import java.time.LocalDate;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class User {
+public class Blog {
+
+    //TODO: test entity blog and user
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
+    private String description;
+    private String image;
+    @Column(name = "posted_at")
+    private LocalDate postedAt;
 
-    private String lastname;
-    private String username;
+    @ManyToOne()
+    @JoinColumn(name = "use_id")
+    private User user;
+
 
 }
