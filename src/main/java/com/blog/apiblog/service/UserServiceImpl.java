@@ -3,7 +3,6 @@ package com.blog.apiblog.service;
 import com.blog.apiblog.entities.User;
 import com.blog.apiblog.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,11 +11,9 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService{
 
-    UserRepository userRepository;
+    private final UserRepository userRepository;
 
-    public UserServiceImpl (UserRepository userRepository){
-        this.userRepository=userRepository;
-    }
+
 
     @Override
     public List<User> getAllUser() {

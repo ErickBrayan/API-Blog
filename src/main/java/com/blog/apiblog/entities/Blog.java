@@ -13,7 +13,7 @@ import java.time.LocalDate;
 @Entity
 public class Blog {
 
-    //TODO: test entity blog and user
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
