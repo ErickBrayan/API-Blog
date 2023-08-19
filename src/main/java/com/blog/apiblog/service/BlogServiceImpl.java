@@ -1,20 +1,20 @@
 package com.blog.apiblog.service;
 
+import com.blog.apiblog.dto.BlogDTO;
 import com.blog.apiblog.entities.Blog;
 import com.blog.apiblog.repositories.BlogRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatusCode;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class BlogServiceImpl implements BlogService{
 
 
-    BlogRepository blogRepository;
+    private final BlogRepository blogRepository;
 
 
     @Override
@@ -22,6 +22,12 @@ public class BlogServiceImpl implements BlogService{
         return blogRepository.findAll();
     }
 
+    @Override
+    public List<BlogDTO> getAllBlogLazy() {
+        return blogRepository.findAll().stream().map(b ->
+            new BlogDTO(b.getId(), b.getDescription(), b.getImage(), b.getPostedAt(), b.getUser().getId())
+        ).collect(Collectors.toList());
+    }
     @Override
     public Blog saveBlog(Blog blog) {
         return blogRepository.save(blog);
